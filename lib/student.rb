@@ -17,7 +17,7 @@ class Student
   def self.find_by_name(name)
     sql = "SELECT * FROM students WHERE name = ? LIMIT 1;"
     student = DB[:conn].execute(sql, name)
-    Student.new_from_db(student)
+    Student.new_from_db(student.first)
   end
 
   def save

@@ -15,7 +15,7 @@ class Student
   end
 
   def self.find_by_name(name)
-    sql = "SELECT * FROM students WHERE name = ? LAST"
+    sql = "SELECT * FROM students WHERE name = ? LIMIT 1;"
     student = DB[:conn].execute(sql, name)
     Student.new_from_db(student)
   end

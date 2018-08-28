@@ -14,6 +14,13 @@ class Student
     # remember each row should be a new instance of the Student class
   end
 
+  def self.all_students_in_grade_9
+    sql = "SELECT * FROM students WHERE grade = 9;"
+    student = DB[:conn].execute(sql).map do |row|
+      Student.new_from_db(row)
+    end
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM students WHERE name = ? LIMIT 1;"
     student = DB[:conn].execute(sql, name).first
